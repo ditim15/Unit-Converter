@@ -16,24 +16,61 @@ body {
 }
 
 nav {
-    padding: 2vh 0;
+    padding: 2vh 0 0 0;
     display: flex;
     justify-content: start;
 }
 nav a {
     text-decoration: none;
     color: black;
-    transition: color 0.2s;
+    transition: color 0.2s ease, background-color 0.2s ease;
     padding: 0.5vh 1vh;
-    margin: 0 1vh;
-    background-color: aliceblue;
+    margin: 0 1vh 0 0;
+    background-color: lightskyblue;
     border: 1px solid black;
+    border-bottom: none;
 }
 
 nav a:hover {
     color: dodgerblue;
+    background-color: aliceblue;
+    border-bottom: 1px solid black;
+}
+
+nav a:active {
+    background-color: aliceblue;
 }
 
 #conversion-area {
-    background-color: dodgerblue;
+    background-color: aliceblue;
+    grid-row: 0;
+    padding: 2vh;
+}
+
+form {
+    display: block;
+    padding: 1vh 0;
+}
+
+#units {
+    padding: 1vh 0;
+}
+input {
+    padding: 0.5vh 0.5vh;
+    margin: 2vh 0 0 0;
+}
+
+button {
+    background-color: lightskyblue;
+    border-radius: 1vh;
+    padding: 1vh 2vh;
+    border: none;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: #618eff;
+    color: white;
+    transform: translateY(-0.1vh);
+    box-shadow: 0 6px 10px rgba(0,0,0,0.11);
 }
