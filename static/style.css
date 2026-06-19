@@ -1,5 +1,25 @@
 * {
     padding: 0;
     margin: 0;
-    font-family: Verdana;
+    font-family: 'DM Sans', system-ui, sans-serif;
+}
+
+#header {
+    text-align: center;
+    margin: 2vh 0;
+}
+
+nav {
+    padding: 2vh 0;
+    display: flex;
+    justify-content: space-evenly;
+}
+nav a {
+    text-decoration: none;
+    color: black;
+    transition: color 0.2s;
+}
+
+nav a:hover {
+    color: dodgerblue;
 }
