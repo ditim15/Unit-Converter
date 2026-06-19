@@ -4,4 +4,4 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return "<h1>Unit Converter Test</h1>"
+    return render_template('layout.html')
