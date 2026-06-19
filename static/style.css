@@ -4,22 +4,36 @@
     font-family: 'DM Sans', system-ui, sans-serif;
 }
 
+body {
+    display: grid;
+    grid-template-columns: auto 50% auto;
+}
+
 #header {
     text-align: center;
     margin: 2vh 0;
+    grid-column: 2;
 }
 
 nav {
     padding: 2vh 0;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: start;
 }
 nav a {
     text-decoration: none;
     color: black;
     transition: color 0.2s;
+    padding: 0.5vh 1vh;
+    margin: 0 1vh;
+    background-color: aliceblue;
+    border: 1px solid black;
 }
 
 nav a:hover {
     color: dodgerblue;
+}
+
+#conversion-area {
+    background-color: dodgerblue;
 }
