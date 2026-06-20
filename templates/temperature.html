@@ -1,10 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "layout.html" %}
 
-</body>
-</html>
+{% block body %}
+    <form action="/temperature" method="post">
+        <p>Enter the temperature to convert</p>
+        <input type="text" placeholder="Temperature" name="temperature" autofocus autocomplete="off">
+        <div id="units">
+            <label for="from-unit">From</label>
+            <select name="from-unit" id="from-unit">
+                <option value="celsius" selected>Celsius</option>
+                <option value="fahrenheit">Fahrenheit</option>
+                <option value="kelvin">Kelvin</option>
+            </select>
+            <label for="to-unit">To</label>
+            <select name="to-unit" id="to-unit">
+                <option value="celsius">Celsius</option>
+                <option value="fahrenheit" selected>Fahrenheit</option>
+                <option value="kelvin">Kelvin</option>
+            </select>
+        </div>
+        <button type="submit">Convert</button>
+    </form>
+    {% if result is not none %}
+        <p>{{ value }} {{ from_unit }} is equal to {{ result }} {{ to_unit }}</p>
+    {% endif %}
+{% endblock %}
