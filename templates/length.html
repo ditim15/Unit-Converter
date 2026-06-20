@@ -8,28 +8,31 @@
         <div id="units">
             <label for="from-unit">From</label>
             <select name="from-unit" id="from-unit">
-                <option value="mm">Millimeters</option>
-                <option value="cm">Centimeters</option>
-                <option value="m" selected>Meters</option>
-                <option value="km">Kilometers</option>
-                <option value="inch">Inchs</option>
-                <option value="foot">Feet</option>
-                <option value="yard">Yards</option>
-                <option value="mile">Miles</option>
+                <option value="millimeters">Millimeters</option>
+                <option value="centimeters">Centimeters</option>
+                <option value="meters" selected>Meters</option>
+                <option value="kilometers">Kilometers</option>
+                <option value="inches">Inchs</option>
+                <option value="feet">Feet</option>
+                <option value="yards">Yards</option>
+                <option value="miles">Miles</option>
             </select>
             <label for="to-unit">To</label>
             <select name="to-unit" id="to-unit">
-                <option value="mm">Millimeters</option>
-                <option value="cm">Centimeters</option>
-                <option value="meter">Meters</option>
-                <option value="km">Kilometers</option>
-                <option value="inch">Inchs</option>
-                <option value="foot" selected>Feet</option>
-                <option value="yard">Yards</option>
-                <option value="mile">Miles</option>
+                <option value="millimeters">Millimeters</option>
+                <option value="centimeters">Centimeters</option>
+                <option value="meters">Meters</option>
+                <option value="kilometers">Kilometers</option>
+                <option value="inches">Inchs</option>
+                <option value="feet" selected>Feet</option>
+                <option value="yards">Yards</option>
+                <option value="miles">Miles</option>
             </select>
         </div>
         <button type="submit">Convert</button>
     </form>
+    {% if result is not none %}
+        <p>{{ value }} {{ from_unit}} is equal to {{ result }} {{ to_unit }}</p>
+    {% endif %}
 
 {% endblock %}
