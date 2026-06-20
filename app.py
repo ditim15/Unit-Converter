@@ -1,3 +1,10 @@
+"""
+Unit Converter Flask Application
+
+Provides routes for converting between units of length, weight, and temperature.
+Conversions are normalized through a base unit (meters, grams, Kelvin), before
+converting to the target unit.
+"""
 from flask import Flask, render_template, request, redirect, url_for
 app = Flask(__name__)
 
@@ -22,10 +29,18 @@ TO_GRAMS = {
 
 @app.route('/')
 def index():
+    """Automatically redirects to length route on page open."""
     return redirect(url_for('length'))
 
 @app.route('/length', methods=['GET', 'POST'])
 def length():
+    """
+    Handle GET and POST requests for the length page.
+
+    On POST requests, the values are read along with the chosen units,
+    converted to meters then from meters to the desired units, before
+    being rendered back to the template.
+    """
     result = None
     value = None
     to_unit = None
@@ -41,7 +56,14 @@ def length():
                            to_unit=to_unit)
 
 @app.route('/weight', methods=['GET', 'POST'])
-def width():
+def weight():
+    """
+    Handles GET and POST requests for weight page.
+
+    On POST requests, the values are read along with the specified units from the form,
+    converts the value to grams, then to the target unit, and renders the result
+    back to the template.
+    """
     result = None
     value = None
     from_unit = None
@@ -56,7 +78,8 @@ def width():
     return render_template('weight.html', result=result, value=value, from_unit=from_unit,
                            to_unit=to_unit)
 
-def to_kelvin(value, unit):
+def to_kelvin(value: float, unit: str) -> float:
+    """Converts the temperature value to Kelvin."""
     if unit == "celsius":
         return value + 273.15
     elif unit == "fahrenheit":
@@ -64,7 +87,8 @@ def to_kelvin(value, unit):
     elif unit == "kelvin":
         return value
 
-def from_kelvin(value, unit):
+def from_kelvin(value: float, unit: str) -> float:
+    """Converts the temperature value from kelvin to the specified unit"""
     if unit == "celsius":
         return value - 273.15
     elif unit == "fahrenheit":
@@ -74,6 +98,13 @@ def from_kelvin(value, unit):
 
 @app.route('/temperature', methods=["GET", "POST"])
 def temperature():
+    """
+    Handle GET and POST requests for the temperature page.
+
+    On POSTS requests, reads the temperature value and units from the form,
+    converts the value to Kelvin then to the target unit, and renders
+    the result back to the template.
+    """
     result = None
     error_message = None
     value = None
