@@ -12,6 +12,14 @@ TO_METERS = {
     "miles": 1609.34
 }
 
+TO_GRAMS = {
+    "milligrams": 0.001,
+    "grams": 1.0,
+    "kilograms": 1000.0,
+    "ounces": 28.3495,
+    "pounds": 453.592
+}
+
 @app.route('/')
 def index():
     return redirect(url_for('length'))
@@ -30,4 +38,20 @@ def length():
             meters = value * TO_METERS[from_unit]
             result = round(meters / TO_METERS[to_unit], 4)
     return render_template('length.html', result=result, value=value, from_unit=from_unit,
+                           to_unit=to_unit)
+
+@app.route('/weight', methods=['GET', 'POST'])
+def width():
+    result = None
+    value = None
+    from_unit = None
+    to_unit = None
+    if request.method == 'POST':
+        if request.form and request.form.get('weight'):
+            value = float(request.form.get('weight'))
+            from_unit = request.form.get('from-unit')
+            to_unit = request.form.get('to-unit')
+            grams = value * TO_GRAMS[from_unit]
+            result = round(grams / TO_GRAMS[to_unit], 4)
+    return render_template('weight.html', result=result, value=value, from_unit=from_unit,
                            to_unit=to_unit)
