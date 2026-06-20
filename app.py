@@ -55,3 +55,42 @@ def width():
             result = round(grams / TO_GRAMS[to_unit], 4)
     return render_template('weight.html', result=result, value=value, from_unit=from_unit,
                            to_unit=to_unit)
+
+def to_kelvin(value, unit):
+    if unit == "celsius":
+        return value + 273.15
+    elif unit == "fahrenheit":
+        return (value - 32) * 5/9 + 273.15
+    elif unit == "kelvin":
+        return value
+
+def from_kelvin(value, unit):
+    if unit == "celsius":
+        return value - 273.15
+    elif unit == "fahrenheit":
+        return (value - 273.15) * 9/5 + 32
+    elif unit == "kelvin":
+        return value
+
+@app.route('/temperature', methods=["GET", "POST"])
+def temperature():
+    result = None
+    error_message = None
+    value = None
+    to_unit = None
+    from_unit = None
+    if request.method == 'POST':
+        if request.form and request.form.get('temperature'):
+            value = float(request.form.get('temperature'))
+            from_unit = request.form.get('from-unit')
+            to_unit = request.form.get('to-unit')
+
+            kelvin = to_kelvin(value, from_unit)
+
+            if kelvin < 0:
+                error_message = "The temperature can not be less than absolute zero."
+            else:
+                result = round(from_kelvin(kelvin, to_unit), 4)
+
+    return render_template('temperature.html', result=result, error_message=error_message,
+                           value=value, from_unit=from_unit, to_unit=to_unit)
