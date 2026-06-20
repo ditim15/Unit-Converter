@@ -74,3 +74,7 @@ button:hover {
     transform: translateY(-0.1vh);
     box-shadow: 0 6px 10px rgba(0,0,0,0.11);
 }
+
+#intro {
+    margin: 2vh 0;
+}
